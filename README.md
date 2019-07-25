@@ -21,3 +21,4 @@ repeat
    WriteLn(IntToStr(tfr.GetCurrentLine()) + ': ' + tfr.ReadFromFile());
 until tfr.GetEof();
 tfr.CloseFile();          
+ 
