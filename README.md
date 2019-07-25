@@ -3,7 +3,7 @@ Pascal unit for handling text files.
 
 # Usage
 
-Writing code
+Writing to file code example:
 ```
 tf := CTextFile.Create('testcreate.txt');
 tf.OpenFileWrite();
@@ -13,7 +13,7 @@ tf.WriteToFile('test text2');
 tf.CloseFile();
 ```
 
-Reading code
+Reading from file code example:
 ```
 tfr := CTextFile.Create('testread2.txt');
 tfr.OpenFileRead();
