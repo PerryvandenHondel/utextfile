@@ -30,4 +30,6 @@ begin
   until tfr.GetEof();
   
   tfr.CloseFile();
+
+  WriteLn('Size of ', tfr.GetPath, ' is ', tfr.GetFileSize());
 end.
