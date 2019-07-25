@@ -193,6 +193,7 @@ begin
 	GetStatus := isOpen;
 end; // of function CTextFile.GetStatus
 
+
 function CTextFile.DoesFileExists(): boolean;
 begin
 	DoesFileExists := alreadyExists;
