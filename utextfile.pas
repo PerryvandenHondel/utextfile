@@ -86,17 +86,18 @@ end; // of constructor CTextFile.Create
 
 procedure CTextFile.OpenFileWrite();
 var
-	p: string;
+	dirs: string;
 begin
-	// WriteLn('CTextFile.OpenFileWrite(): ' + path);
+	WriteLn('CTextFile.OpenFileWrite(): ' + path);
 	
-	// Get the folder of the path
-	p := ExtractFilePath(path);
-	if Length(p) > 0 then
+	// Get the folder of the pat
+	dirs := ExtractFilePath(path);
+	WriteLn(dirs);
+	if Length(dirs) > 0 then
 	begin
 		// Create a folder tree when needed.
 		// Windows: MakeFolderTree(path);
-        ForceDirectories(path);
+        ForceDirectories(dirs);
 	end;
 	
 	{$I+}
@@ -115,9 +116,7 @@ begin
 		alreadyExists := true; // Read value with AppendingToFile()
 		isOpen := True;
 	end;
-end; // of procedure CTextFile.OpenFileWrite
-
-
+end; // of procedure CTextFile.OpenFileWr
 procedure CTextFile.OpenFileRead();
 begin
 	{$I+}
