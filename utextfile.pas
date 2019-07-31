@@ -116,7 +116,9 @@ begin
 		alreadyExists := true; // Read value with AppendingToFile()
 		isOpen := True;
 	end;
-end; // of procedure CTextFile.OpenFileWr
+end; // of procedure CTextFile.OpenFileWrite()
+
+
 procedure CTextFile.OpenFileRead();
 begin
 	{$I+}
@@ -131,7 +133,7 @@ begin
 		end;
 	end;
 	isOpen := True;
-end; // of procedure CTextFile.OpenFileRead
+end; // of procedure CTextFile.OpenFileRead()
 
 
 procedure CTextFile.CloseFile();
@@ -201,7 +203,7 @@ end; // of function CTextFile.DoesFileExists()
 
 procedure CTextFile.WriteToFile(line : Ansistring);
 begin
-	WriteLn('CTextFile.WriteToFile():', line);
+	//WriteLn('CTextFile.WriteToFile():', line);
 	WriteLn(textFile, line);
 end; // procedure CTextFile.WriteToFile
 
