@@ -88,11 +88,11 @@ procedure CTextFile.OpenFileWrite();
 var
 	dirs: string;
 begin
-	WriteLn('CTextFile.OpenFileWrite(): ' + path);
+	//WriteLn('CTextFile.OpenFileWrite(): ' + path);
 	
 	// Get the folder of the pat
 	dirs := ExtractFilePath(path);
-	WriteLn(dirs);
+	//WriteLn(dirs);
 	if Length(dirs) > 0 then
 	begin
 		// Create a folder tree when needed.
