@@ -2,7 +2,11 @@
                                                                               
    Unit UTextFile                                                              
    
-  Usage     
+  Usage  
+	var
+		tf: CTextFile;
+		tfr: CTextFile;
+	
     // Writing
     tf := CTextFile.Create('testcreate.txt');
     tf.OpenFileWrite();
