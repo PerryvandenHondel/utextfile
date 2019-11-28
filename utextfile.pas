@@ -64,7 +64,6 @@ type
 		function AppendingToFile(): boolean;
 		function GetCurrentLine() : integer;
 		function GetEof() : boolean;
-		function GetFileSize(): Int64;
 		function GetPath() : string;
 		function GetStatus() : boolean;
 		function ReadFromFile() : AnsiString; // v02
@@ -101,7 +100,8 @@ begin
 	begin
 		// Create a folder tree when needed.
 		// Windows: MakeFolderTree(path);
-        ForceDirectories(dirs);
+        if ForceDirectories(dirs) = false then
+			WriteLn('UTEXTFILE: OpenFileRead(): Could not create the directory structure for ', path);
 	end;
 	
 	{$I+}
@@ -133,7 +133,7 @@ begin
 	except
 		on E: EInOutError do
 		begin	
-			WriteLn('File handling occurred. Details: ' + E.ClassName + '/' + E.Message);
+			WriteLn('UTEXTFILE: OpenFileRead(): File handling occurred. Details: ' + E.ClassName + '/' + E.Message);
 		end;
 	end;
 	isOpen := True;
@@ -172,25 +172,6 @@ begin
 	end;
 	sysutils.DeleteFile(path);
 end;  // procedure CTextFile.DeleteFile
-
-
-function CTextFile.GetFileSize(): Int64;
-var
-	f: File of byte;
-	r: Int64;
-begin
-	r := 0;
-  
-	if isOpen = True then
-	begin
-		Close(textFile);
-		Assign(f, path);
-		Reset(f);
-		r := FileSize(f);
-		Close(f);
-	end;
-	GetFileSize := r;
-end; // of function CTextFile.GetFileSize
 
 
 function CTextFile.GetStatus() : boolean;
