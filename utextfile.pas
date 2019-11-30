@@ -20,7 +20,7 @@
     tfr.OpenFileRead();
     Writeln('The status of ' + tfr.GetPath + ' is ' + BoolToStr(tfr.GetStatus, 'OPEN', 'CLOSED'));
     repeat
-      WriteLn(IntToStr(tfr.GetCurrentLine()) + ': ' + tfr.ReadFromFile());
+      WriteLn(IntToStr(tfr.GetLineNumber()) + ': ' + tfr.ReadFromFile());
     until tfr.GetEof();
     tfr.CloseFile();                                                
 		
@@ -62,7 +62,7 @@ type
 		//function ReadFromFile() : string; // v01
 		constructor Create(pathNew : string);
 		function AppendingToFile(): boolean;
-		function GetCurrentLine() : integer;
+		function GetLineNumber() : integer;
 		function GetEof() : boolean;
 		function GetPath() : string;
 		function GetStatus() : boolean;
@@ -203,10 +203,10 @@ begin
 end; // of function CTextFile.ReadFromFile
 
 
-function CTextFile.GetCurrentLine() : integer;
+function CTextFile.GetLineNumber() : integer;
 begin
-	GetCurrentLine := lineCount;
-end; // function CTextFile.GetCurrentLine
+	GetLineNumber := lineCount;
+end; // function CTextFile.GetLineNumber
 
 
 function CTextFile.GetEof() : boolean;
