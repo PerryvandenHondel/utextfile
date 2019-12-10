@@ -29,13 +29,20 @@ begin
   tfr.OpenFileRead();
   Writeln('The status of ' + tfr.GetPath + ' is ' + BoolToStr(tfr.GetStatus, 'OPEN', 'CLOSED'));
   repeat
-    WriteLn(IntToStr(tfr.GetCurrentLine()) + ': ' + tfr.ReadFromFile());
-    
+    WriteLn(IntToStr(tfr.GetLineNumber()) + ': ' + tfr.ReadFromFile());
   until tfr.GetEof();
   
- 
+  //WriteLn('Size of ', tfr.GetPath, ' is ', tfr.GetFileSize());
 
-  WriteLn('Size of ', tfr.GetPath, ' is ', tfr.GetFileSize());
+  tfr.CloseFile();
 
-   tfr.CloseFile();
+
+  path := '/tmp/firstname.log';
+  tf := CTextFile.Create(path);
+  tf.OpenFileWrite();
+  tf.WriteToFile('firstname line');
+  tf.CloseFile();
+  tf.RenameTheFile('newname.log');
+
+
 end.
