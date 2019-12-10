@@ -60,18 +60,18 @@ type
 	
 	public
 		//function ReadFromFile() : string; // v01
-		constructor Create(pathNew : string);
+		constructor CreateTheFile(pathNew : string);
 		function AppendingToFile(): boolean;
 		function GetLineNumber() : integer;
 		function GetEof() : boolean;
 		function GetPath() : string;
 		function GetStatus() : boolean;
 		function ReadFromFile() : AnsiString; // v02
-		procedure CloseFile();
-		procedure DeleteFile();
+		procedure CloseTheFile();
+		procedure DeleteTheFile();
 		procedure RenameTheFile(newName: AnsiString);
-		procedure OpenFileRead();
-		procedure OpenFileWrite();
+		procedure OpenFileForRead();
+		procedure OpenFileForWrite();
 		procedure WriteToFile(line : AnsiString);
 		function DoesFileExists(): boolean;
 	end;
@@ -80,7 +80,7 @@ type
 Implementation
 
 
-constructor CTextFile.Create(pathNew : string);
+constructor CTextFile.CreateTheFile(pathNew : string);
 begin
 	path := pathNew;
 	lineCount := 0;
@@ -88,7 +88,7 @@ begin
 end; // of constructor CTextFile.Create
 
 
-procedure CTextFile.OpenFileWrite();
+procedure CTextFile.OpenFileForWrite();
 var
 	dirs: string;
 begin
@@ -124,7 +124,7 @@ begin
 end; // of procedure CTextFile.OpenFileWrite()
 
 
-procedure CTextFile.OpenFileRead();
+procedure CTextFile.OpenFileForRead();
 begin
 	{$I+}
 	Assign(textFile, path);
@@ -141,7 +141,7 @@ begin
 end; // of procedure CTextFile.OpenFileRead()
 
 
-procedure CTextFile.CloseFile();
+procedure CTextFile.CloseTheFile();
 begin
   isOpen := False;
   Close(textFile);
@@ -164,7 +164,7 @@ begin
 end; // function CTextFile.GetPath
 
 
-procedure CTextFile.DeleteFile();
+procedure CTextFile.DeleteTheFile();
 begin
 	if isOpen = True then
 	begin
