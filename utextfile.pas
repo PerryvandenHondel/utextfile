@@ -69,6 +69,7 @@ type
 		function ReadFromFile() : AnsiString; // v02
 		procedure CloseFile();
 		procedure DeleteFile();
+		procedure RenameTheFile(newName: AnsiString);
 		procedure OpenFileRead();
 		procedure OpenFileWrite();
 		procedure WriteToFile(line : AnsiString);
@@ -172,6 +173,35 @@ begin
 	end;
 	sysutils.DeleteFile(path);
 end;  // procedure CTextFile.DeleteFile
+
+
+procedure CTextFile.RenameTheFile(newName: AnsiString);
+{
+	RenameTheFile()
+
+	Rename the current file to a new name.
+	Obtain current path from "path" and prefix this to newName
+
+	/temp/oldname.log > /temp/ > /temp/newname.log
+
+	newName: The new name of the file. 
+
+	Named as RenameTheFile to avoid conflict with RenameFile (sysutils)
+}
+var
+	dir: AnsiString;
+	newPath: AnsiString;
+begin
+	dir := ExtractFilePath(path);
+	WriteLn('CTextFile.RenameFile(): dir=', dir);
+
+	newPath := dir + newName;
+
+	WriteLn('CTextFile.RenameFile(): newPath=', newPath);
+	if RenameFile(path, newPath) = false then  { RenameFile from unit SysUtils }
+		WriteLn('CTextFile.RenameFile() ERROR: renaming file failed: ', path, ' > ', newPath);
+end; { of procedure CTextFile.RenameTheFile() }
+
 
 
 function CTextFile.GetStatus() : boolean;
